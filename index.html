@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+      content="Line Sledder — draw a track, press play, and ride your music." />
+    <title>Line Sledder</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="classicbar" aria-label="Line Sledder tools">
+        <button id="settingsBtn" class="settings-toggle" type="button" aria-label="Open settings" aria-expanded="false" aria-controls="settingsPanel">☰</button>
+        <div class="classic-group" aria-label="Editing tools">
+          <button class="classic-tool tool" data-tool="draw"
+            title="Draw a smooth track (D)"><span>✎</span><small>Curve</small></button>
+          <button class="classic-tool tool" data-tool="straight"
+            title="Draw a straight track (L)"><span>╱</span><small>Line</small></button>
+        <div class="classic-group line-picker drawing-options" id="lineType"
+          aria-label="Track type">
+          <button class="classic-tool active" data-line="regular"
+            title="Regular line"><span class="pencil regular-pencil">✎</span><small>Regular</small></button>
+          <button class="classic-tool" data-line="boost"
+            title="Speed line"><span class="pencil boost-pencil">✎</span><small>Speed</small></button>
+          <button class="classic-tool" data-line="bounce"
+            title="Bouncy line"><span class="pencil bounce-pencil">✎</span><small>Bounce</small></button>
+        </div>
+          <button class="classic-tool tool" data-tool="erase"
+            title="Erase (E)"><span>▱</span><small>Erase</small></button>
+          <button class="classic-tool tool" data-tool="select"
+            title="Select (V)"><span>⌕</span><small>Select</small></button>
+          <button class="classic-tool tool" data-tool="pan"
+            title="Pan (H)"><span>♚</span><small>Pan</small></button>
+        </div>
+        <div class="classic-separator"></div>
+        <div class="classic-group">
+          <button class="classic-tool" id="undoBtn"
+            title="Undo"><span>↶</span><small>Undo</small></button>
+          <button class="classic-tool" id="redoBtn"
+            title="Redo"><span>↷</span><small>Redo</small></button>
+          <button class="classic-tool" id="uploadBtn"
+            title="Choose soundtrack"><span>▣</span><small>Music</small></button>
+          <button class="classic-tool" id="resetViewBtn"
+            title="Fit track"><span>⌂</span><small>View</small></button>
+          <button class="classic-tool" id="clearBtn"
+            title="Clear track"><span>♜</span><small>Clear</small></button>
+        </div>
+        <div
+          class="classic-readout"><span id="typeHelp">Regular line</span></div>
+
+      </header>
+
+      <aside id="settingsPanel" hidden aria-label="Settings">
+        <div class="settings-heading"><h2>Settings</h2><button id="closeSettingsBtn" type="button" aria-label="Close settings">×</button></div>
+        <div id="settingsActions"></div>
+        <label class="winter-setting" for="winterMode"><span>Snowy / Christmas mode</span><input id="winterMode" type="checkbox" /></label>
+        <p class="spawn-help">Falling snow and festive colors. Physics stay the same.</p>
+        <label class="rider-setting" for="riderCount">Sledders
+          <select id="riderCount">
+            <option value="1">1</option><option value="2">2</option>
+            <option value="3">3</option><option value="4">4</option>
+          </select>
+        </label>
+        <div id="spawnControls" class="spawn-controls" aria-label="Sledder starting positions"></div>
+        <p class="spawn-help">Choose a sledder, then click the map to place its starting center. Escape cancels.</p>
+      </aside>
+      <main class="classic-workspace">
+        <section class="stage-wrap">
+          <canvas id="stage" aria-label="Line Sledder track editor"></canvas>
+          <div id="eraserOutline" hidden aria-hidden="true"></div>
+          <div class="stage-meta">
+            
+            <span id="zoomReadout">100%</span>
+          </div>
+        </section>
+      </main>
+      <footer class="playback-dock" aria-label="Playback controls">
+        <div class="timeline-track">
+          <input id="timeSlider" class="time-slider" type="range" min="0" max="30"
+            step="0.0166666667" value="0" aria-label="Simulation timeline" />
+        </div>
+        <div class="timeline-labels"><span id="timeReadout">00:00.00</span><span id="endTimeReadout">00:30.00</span></div>
+        <div class="dock-buttons">
+          <button id="backTimeBtn" title="Hold to rewind (4×)" aria-label="Hold to rewind" data-speed-hold>◀◀</button>
+          <button id="playBtn" title="Play (Space)" aria-label="Play">▶</button>
+          <button id="pauseBtn" class="playing" title="Pause (Space)" aria-label="Pause">Ⅱ</button>
+          <button id="restartBtn" title="Stop and reset (R)" aria-label="Stop and reset">■</button>
+          <button id="forwardTimeBtn" title="Hold for fast playback (4×)" aria-label="Hold for fast playback" data-speed-hold>▶▶</button>
+        </div>
+      </footer>
+      <div class="hidden-controls" aria-hidden="true">
+      <input id="lineWidth" type="range" min="1" max="8" value="3" /><output id="widthValue">3 px</output>
+      <strong id="lineCount">0</strong><strong id="trackLength">0</strong>
+      <input id="audioInput" type="file" accept="audio/*" hidden /><span id="audioStatus">NO AUDIO</span>
+      <div id="songCard" class="hidden"><strong id="songName">Song</strong><small id="songDuration">00:00</small><button id="removeAudioBtn">×</button></div>
+      <input id="speedRange" type="range" min="0.25" max="2" step="0.25" value="1" /><output id="speedValue">1×</output>
+      <input id="followRider" type="checkbox" checked /><span id="coords">X 0 Y 0</span>
+    </div>
+    </div>
+    <audio id="audio" preload="metadata"></audio>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="main.js"></script>
+    <script src="splash.js"></script>
+    <script src="background-music.js"></script>
+    <script src="addons.js"></script>
+  </body>
+</html>
