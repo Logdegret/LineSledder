@@ -111,39 +111,6 @@ Line Sledder is a static site. Publish the project files together, keeping the `
 
 It can be hosted with GitHub Pages or another static host. No server-side application or build command is needed.
 
-## Extending Line Sledder
-
-**Add a toolbar button** — append this to `addons.js`:
-
-```js
-LineSledder.addButton({
-  id: "restartRideBtn",
-  icon: "↺",
-  label: "Restart",
-  title: "Restart the ride",
-  onClick: () => LineSledder.restart(),
-});
-```
-
-Use a unique `id` for each button. Add-ons must run after `main.js`, as they do in the included HTML.
-
-**Adjust the simulation** — edit the constants near the top of `main.js`:
-
-- `GRAVITY` controls downward acceleration.
-- `BOOST_ACCELERATION` controls the strength of speed lines.
-- `defaultSpawnPoints()` defines the default starting positions.
-
-**Change the look** — edit `style.css` for the interface, or the drawing functions in `main.js` for the track and sledder artwork.
-
-## Project Info
-
-| | |
-| --- | --- |
-| Made by | Logan |
-| GitHub | [Logdegret](https://github.com/Logdegret) |
-| Repository | [LineSledder](https://github.com/Logdegret/LineSledder) |
-
-Line Sledder is an independent project inspired by Line Rider, not an official Line Rider release.
 
 ---
 
