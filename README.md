@@ -1,117 +1,113 @@
 # Line Sledder
 
-A browser-based sledding game where you draw the track and let gravity do the rest 🛷❄️
+Line Sledder is a browser game where you draw a track and watch a sledder ride it. 🛷❄️
 
-Built with HTML, CSS, and JavaScript
+It was inspired by Line Rider and is made with HTML, CSS, and JavaScript.
 
 ## About
 
-Line Sledder is a fully client-side track editor and sledding simulation inspired by the core mechanics of Line Rider. Draw curves, build jumps, add speed and bounce lines, and watch your sledders ride what you create.
+Draw lines, make jumps, add speed or bounce sections, and press play to see what happens.
 
-Everything runs in your browser with plain HTML, CSS, and JavaScript. No backend, no database, and no build step required.
+Everything runs in your browser, so there is no complicated setup.
 
 ## Features
 
 ### Track Editor
 
-- **Curves and straight lines** — draw smooth freehand tracks or use the separate straight-line tool
-- **Three track types** — regular, speed, and bounce
-- **Line direction** — hold Shift while drawing to reverse the rideable side; the black edge shows which side is solid
-- **Editing tools** — erase, select, and edit lines, with undo and redo
-- **Pan and zoom** — move around an open canvas and work at different scales
-- **Live recalculation** — editing a track updates the sledders to where they would be at the current simulation time
+- Draw curves and straight lines
+- Use regular, speed, or bounce lines
+- Hold **Shift** to change which side of the line is rideable
+- Erase and edit lines
+- Undo and redo
+- Pan and zoom around the map
+- Edit the track while the simulation is paused
 
-### Sledders and Playback
+### Sledders
 
-- **Gravity-based simulation** — sledders slide, jump, and react to track impacts
-- **Joined characters** — the rider's body reacts to motion and can detach after a hard impact
-- **Up to four sledders** — choose the rider count in Settings
-- **Custom starting positions** — place each sledder's start on the map
-- **Camera follow** — follow the lead sledder during playback
-- **Timeline controls** — play, pause, restart, and scrub through the simulation
-- **Hold-to-speed controls** — hold the forward button for fast playback or the back button to rewind
-- **Restart without clearing** — reset the ride while keeping your track
+- Gravity-based movement
+- Sledders can jump, crash, and fall apart
+- Up to four sledders
+- Choose where each sledder starts
+- Camera follow mode
+- Play, pause, restart, rewind, and fast-forward
+- Use the timeline to move through the ride
 
 ### Music and Extras
 
-| Feature | Description |
-| --- | --- |
-| Local soundtrack | Choose an audio file and synchronize it with simulation playback and seeking |
-| Background music | Looping background music with a separate on/off control |
-| Replay recording | Record the canvas and download a video; format and soundtrack capture depend on browser support |
-| Snowy / Christmas mode | Optional falling snow and festive colors, without changing the physics |
-| Intro screen | Animated introduction before entering the editor |
-| Save and load | Store the track, rider count, and starting positions in this browser |
-
-### Simple Add-ons
-
-Extra buttons can use the `LineSledder` API exposed by `main.js`. The existing save, load, and recording controls live in `addons.js`.
-
-You can add a button without editing the HTML or manually connecting its click handler.
+- Upload your own song and play it with the ride
+- Optional background music
+- Record your ride as a video
+- Snow/Christmas mode
+- Intro screen
+- Save and load tracks in your browser
 
 ## Tech Stack
 
-| Layer | Technology |
+| Part | Technology |
 | --- | --- |
-| Structure | HTML5 |
-| Styling | CSS3 |
-| Logic | Vanilla JavaScript |
-| Rendering | Canvas 2D |
-| Audio | HTML audio elements |
-| Storage | Browser localStorage |
-| Video recording | Canvas captureStream and MediaRecorder |
+| Website | HTML |
+| Styling | CSS |
+| Game | JavaScript |
+| Drawing | Canvas |
+| Audio | HTML Audio |
+| Saving | localStorage |
+| Recording | MediaRecorder |
 
-## Architecture
+## Files
 
 ```text
-├── index.html             # Editor, toolbar, sidebar, and timeline
-├── style.css              # Layout, controls, and seasonal styling
-├── main.js                # Drawing, physics, playback, riders, and saving
-├── addons.js              # Save/load buttons and replay recording
-├── splash.js              # Intro screen
-├── background-music.js    # Looping music and its toggle
+├── index.html
+├── style.css
+├── main.js
+├── addons.js
+├── splash.js
+├── background-music.js
 ├── assets/
-│   ├── background-music.mp3
-│   ├── hack-club-flag.png
-│   └── stardance-splash.png
 └── README.md
 ```
 
 ## Getting Started
 
-Clone the repository:
+Clone the project:
 
 ```sh
 git clone https://github.com/Logdegret/LineSledder.git
 cd LineSledder
 ```
 
-Open `index.html` in your browser, or run a local static server with Python:
+Then open `index.html` in your browser.
+
+You can also run a local server:
 
 ```sh
 python3 -m http.server 8080 --bind 127.0.0.1
 ```
 
-Then open [localhost:8080](http://localhost:8080).
+Then go to:
 
-### Your First Track
+```text
+http://localhost:8080
+```
 
-1. Select **Curve** or **Line**.
-2. Choose **Regular**, **Speed**, or **Bounce** from the drawing options.
-3. Draw a track underneath the sledder's starting position.
-4. Press **Play** to try it.
-5. Pause and edit, or use the timeline to inspect the ride.
-6. Open **☰ Settings → Save** to keep your track in this browser.
+## How to Play
 
-Saved tracks belong to the browser and site address you used. They do not sync to GitHub or other devices, and clearing browser storage removes them. Uploaded songs must be selected again after a reload. Browsers may require a click before allowing sound to play.
+1. Choose **Curve** or **Line**.
+2. Pick **Regular**, **Speed**, or **Bounce**.
+3. Draw a track under the sledder.
+4. Press **Play**.
+5. Pause and edit your track if needed.
+6. Save it from **☰ Settings → Save**.
+
+Saved tracks are stored only in your browser. They do not sync to GitHub or other devices.
+
+Uploaded songs need to be selected again after refreshing the page.
 
 ## Deployment
 
-Line Sledder is a static site. Publish the project files together, keeping the `assets` folder and its paths intact.
+Line Sledder is a static website, so it does not need a server or build system.
 
-It can be hosted with GitHub Pages or another static host. No server-side application or build command is needed.
-
+You can host it on GitHub Pages or any other static website host.
 
 ---
 
-Line Sledder — draw a line, take a ride 🛷❄️
+**Line Sledder — draw a line, take a ride. 🛷❄️**
