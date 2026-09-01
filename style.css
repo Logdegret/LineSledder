@@ -1,3 +1,4 @@
+
 :root {
   --black: #222;
   --gray: #999;
@@ -6,22 +7,7 @@
   --pink: #c84787;
 }
 
-.settings-toggle { flex-shrink: 0; padding: 8px 12px; border: 0; background: white; color: #333; font-size: 23px; cursor: pointer; }
-#settingsPanel { position: fixed; right: 0; top: 72px; bottom: 88px; z-index: 20; width: min(280px, 100vw); padding: 20px; overflow-y: auto; background: white; border-left: 1px solid #ccc; box-shadow: -4px 0 16px #0000000a; }
-#settingsPanel[hidden] { display: none; }
-.settings-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; }
-.settings-heading h2 { font: 18px Arial, sans-serif; margin: 0; }
-.settings-heading button { border: 0; background: white; font-size: 26px; cursor: pointer; }
-#settingsActions { display: grid; gap: 10px; }
-#settingsActions .classic-tool { width: 100%; height: 42px; flex-direction: row; justify-content: flex-start; gap: 14px; padding: 8px 12px; border: 1px solid #ddd; color: #333; }
-#settingsActions .classic-tool small { font: 14px Arial, sans-serif; color: #333; }
-.rider-setting { display: flex; align-items: center; justify-content: space-between; margin-top: 24px; font-size: 14px; }
-.rider-setting select { min-width: 70px; padding: 7px; background: white; border: 1px solid #ccc; }
-.spawn-controls { display: grid; gap: 12px; margin-top: 22px; }
-.spawn-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-.spawn-row span { font-size: 12px; line-height: 1.6; white-space: pre-line; }
-.spawn-row button { padding: 7px 9px; border: 1px solid #ccc; background: white; cursor: pointer; }
-.spawn-help { font-size: 12px; line-height: 1.5; color: #777; }
+/* Base styles */
 
 * {
   box-sizing: border-box;
@@ -47,6 +33,9 @@ input {
   font: inherit;
 }
 
+
+/* Main layout */
+
 .app-shell {
   display: grid;
   grid-template-rows: 72px minmax(0, 1fr) 88px;
@@ -54,15 +43,21 @@ input {
   height: 100%;
 }
 
+
+/* Top toolbar */
+
 .classicbar {
   position: relative;
   z-index: 2;
+
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
+
   padding: 7px 12px;
   overflow-x: auto;
+
   background: white;
   border-bottom: 1px solid #eee;
 }
@@ -72,15 +67,6 @@ input {
   align-items: center;
   gap: 2px;
 }
-
-.drawing-options { padding: 2px 6px; margin: 0 6px; border-left: 1px solid #ccc; border-right: 1px solid #ccc; background: #f8f8f8; }
-.drawing-options[hidden] { display: none; }
-.drawing-options .classic-tool { height: 44px; background: transparent; }
-.drawing-options .classic-tool > span { font-size: 20px; }
-#eraserOutline { position: absolute; width: 22px; height: 22px; border: 1px solid #333; border-radius: 50%; box-shadow: 0 0 0 1px white; transform: translate(-50%, -50%); pointer-events: none; }
-#eraserOutline[hidden] { display: none; }
-.dock-buttons button.speed-held { background: #e4efff; color: #3888ff; }
-.dock-buttons button[data-speed-hold] { touch-action: none; user-select: none; }
 
 .classic-separator {
   width: 1px;
@@ -94,13 +80,16 @@ input {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   width: 43px;
   height: 52px;
   padding: 3px 2px;
+
   color: var(--gray);
   background: white;
   border: 1px solid transparent;
   border-radius: 0;
+
   cursor: pointer;
 }
 
@@ -128,6 +117,9 @@ input {
   color: #111;
 }
 
+
+/* Pencil colors */
+
 .regular-pencil {
   color: var(--black);
 }
@@ -140,6 +132,55 @@ input {
   color: var(--pink);
 }
 
+
+/* Drawing options */
+
+.drawing-options {
+  padding: 2px 6px;
+  margin: 0 6px;
+
+  background: #f8f8f8;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+.drawing-options[hidden] {
+  display: none;
+}
+
+.drawing-options .classic-tool {
+  height: 44px;
+  background: transparent;
+}
+
+.drawing-options .classic-tool > span {
+  font-size: 20px;
+}
+
+
+/* Eraser cursor */
+
+#eraserOutline {
+  position: absolute;
+
+  width: 22px;
+  height: 22px;
+
+  border: 1px solid #333;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px white;
+
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+#eraserOutline[hidden] {
+  display: none;
+}
+
+
+/* Play button */
+
 .play-button,
 .play-button.playing {
   color: #777;
@@ -150,13 +191,18 @@ input {
   color: #111;
 }
 
+
+/* Toolbar readout */
+
 .classic-readout {
   position: absolute;
   right: 14px;
   bottom: 5px;
+
   display: flex;
   align-items: center;
   gap: 12px;
+
   color: var(--gray);
   font-size: 10px;
 }
@@ -166,17 +212,8 @@ input {
   font: 10px monospace;
 }
 
-.time-slider {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  margin: 0;
-  accent-color: #555;
-  cursor: pointer;
-}
+
+/* Main drawing area */
 
 .classic-workspace {
   position: relative;
@@ -186,6 +223,7 @@ input {
 .stage-wrap {
   position: absolute;
   inset: 0;
+
   overflow: hidden;
   background: white;
 }
@@ -202,30 +240,303 @@ input {
   right: 17px;
   bottom: 7px;
   left: 17px;
+
   display: flex;
   justify-content: space-between;
+
   color: #aaa;
   font-size: 9px;
   letter-spacing: 1px;
+
   pointer-events: none;
 }
 
-.hidden,
-.hidden-controls {
-  display: none !important;
+
+/* Settings panel */
+
+.settings-toggle {
+  flex-shrink: 0;
+
+  padding: 8px 12px;
+
+  border: 0;
+  background: white;
+  color: #333;
+
+  font-size: 23px;
+  cursor: pointer;
 }
+
+#settingsPanel {
+  position: fixed;
+  top: 72px;
+  right: 0;
+  bottom: 88px;
+  z-index: 20;
+
+  width: min(280px, 100vw);
+  padding: 20px;
+  overflow-y: auto;
+
+  background: white;
+  border-left: 1px solid #ccc;
+  box-shadow: -4px 0 16px #0000000a;
+}
+
+#settingsPanel[hidden] {
+  display: none;
+}
+
+.settings-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 22px;
+}
+
+.settings-heading h2 {
+  margin: 0;
+  font: 18px Arial, sans-serif;
+}
+
+.settings-heading button {
+  border: 0;
+  background: white;
+
+  font-size: 26px;
+  cursor: pointer;
+}
+
+#settingsActions {
+  display: grid;
+  gap: 10px;
+}
+
+#settingsActions .classic-tool {
+  width: 100%;
+  height: 42px;
+  padding: 8px 12px;
+
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 14px;
+
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+#settingsActions .classic-tool small {
+  color: #333;
+  font: 14px Arial, sans-serif;
+}
+
+
+/* Rider settings */
+
+.rider-setting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 24px;
+  font-size: 14px;
+}
+
+.rider-setting select {
+  min-width: 70px;
+  padding: 7px;
+
+  background: white;
+  border: 1px solid #ccc;
+}
+
+
+/* Spawn controls */
+
+.spawn-controls {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.spawn-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.spawn-row span {
+  font-size: 12px;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+.spawn-row button {
+  padding: 7px 9px;
+
+  background: white;
+  border: 1px solid #ccc;
+
+  cursor: pointer;
+}
+
+.spawn-help {
+  color: #777;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+
+/* Playback dock */
+
+.playback-dock {
+  padding: 10px 24px 6px;
+  background: white;
+}
+
+.timeline-track {
+  position: relative;
+}
+
+.time-slider {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  height: 4px;
+  margin: 0;
+
+  accent-color: #555;
+  cursor: pointer;
+}
+
+.playback-dock .time-slider {
+  position: static;
+  display: block;
+
+  width: 100%;
+  height: 16px;
+
+  accent-color: #222;
+}
+
+.timeline-labels {
+  display: flex;
+  justify-content: space-between;
+
+  color: #888;
+  font: 11px Arial, sans-serif;
+}
+
+
+/* Playback buttons */
+
+.dock-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+
+  margin-top: -9px;
+}
+
+.dock-buttons button {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+
+  color: #222;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+
+  font: bold 15px Arial, sans-serif;
+  cursor: pointer;
+}
+
+.dock-buttons button:hover {
+  background: #f0f0f0;
+}
+
+.dock-buttons button.playing,
+.dock-buttons button.speed-held {
+  color: #3888ff;
+  background: #e4efff;
+}
+
+.dock-buttons button:focus-visible {
+  outline: 2px solid #3888ff;
+}
+
+.dock-buttons button[data-speed-hold] {
+  touch-action: none;
+  user-select: none;
+}
+
+
+/* Winter mode */
+
+.winter-setting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  margin-top: 22px;
+
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.winter-setting input {
+  width: 18px;
+  height: 18px;
+  accent-color: #326c53;
+}
+
+.winter-mode .classicbar {
+  border-bottom: 2px solid #326c53;
+}
+
+.winter-mode .playback-dock {
+  border-top: 2px solid #326c53;
+}
+
+.winter-mode .dock-buttons button.playing {
+  color: #a73535;
+  background: #f8e7e5;
+}
+
+.winter-mode .playback-dock .time-slider {
+  accent-color: #a73535;
+}
+
+.winter-mode .classic-tool.active {
+  background: #edf5ef;
+  border-color: #326c53;
+}
+
+
+/* Toast messages */
 
 .toast {
   position: fixed;
-  bottom: 24px;
+  bottom: 100px;
   left: 50%;
   z-index: 5;
+
   padding: 8px 12px;
+
   color: white;
   background: var(--black);
   font-size: 11px;
+
   opacity: 0;
   pointer-events: none;
+
   transform: translate(-50%, 8px);
   transition: 150ms ease;
 }
@@ -234,6 +545,75 @@ input {
   opacity: 1;
   transform: translate(-50%, 0);
 }
+
+
+/* Intro screen */
+
+.intro-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: white;
+  transition: opacity 300ms;
+}
+
+.intro-screen svg {
+  width: min(850px, 90vw);
+  height: auto;
+  overflow: visible;
+}
+
+.intro-screen path {
+  fill: none;
+  stroke: #222;
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.intro-screen button {
+  margin-top: 45px;
+  padding: 12px 26px;
+
+  color: #222;
+  background: white;
+  border: 1px solid #ccc;
+
+  font: 15px Arial, sans-serif;
+  cursor: pointer;
+
+  opacity: 0;
+  transition: opacity 400ms;
+}
+
+.intro-screen button:disabled {
+  visibility: hidden;
+}
+
+.intro-screen button.ready {
+  opacity: 1;
+}
+
+.intro-screen button:hover {
+  border-color: #222;
+}
+
+
+/* Utility classes */
+
+.hidden,
+.hidden-controls {
+  display: none !important;
+}
+
+
+/* Smaller screens */
 
 @media (max-width: 850px) {
   .classicbar {
@@ -253,28 +633,13 @@ input {
   }
 }
 
-.playback-dock { padding: 10px 24px 6px; background: white; }
-.timeline-track { position: relative; }
-.winter-setting { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 22px; font-size: 14px; cursor: pointer; }
-.winter-setting input { width: 18px; height: 18px; accent-color: #326c53; }
-.winter-mode .classicbar { border-bottom: 2px solid #326c53; }
-.winter-mode .playback-dock { border-top: 2px solid #326c53; }
-.winter-mode .dock-buttons button.playing { color: #a73535; background: #f8e7e5; }
-.winter-mode .playback-dock .time-slider { accent-color: #a73535; }
-.winter-mode .classic-tool.active { border-color: #326c53; background: #edf5ef; }
-.playback-dock .time-slider { position: static; display: block; width: 100%; height: 16px; accent-color: #222; }
-.timeline-labels { display: flex; justify-content: space-between; color: #888; font: 11px Arial, sans-serif; }
-.dock-buttons { display: flex; justify-content: center; gap: 6px; margin-top: -9px; }
-.dock-buttons button { width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: #222; font: bold 15px Arial, sans-serif; cursor: pointer; }
-.dock-buttons button:hover { background: #f0f0f0; }
-.dock-buttons button.playing { color: #3888ff; background: #e4efff; }
-.dock-buttons button:focus-visible { outline: 2px solid #3888ff; }
-.toast { bottom: 100px; }
-.intro-screen { position: fixed; inset: 0; z-index: 10000; background: white; display: flex; align-items: center; justify-content: center; flex-direction: column; transition: opacity 300ms; }
-.intro-screen svg { width: min(850px, 90vw); height: auto; overflow: visible; }
-.intro-screen path { fill: none; stroke: #222; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; }
-.intro-screen button { margin-top: 45px; padding: 12px 26px; background: white; color: #222; border: 1px solid #ccc; font: 15px Arial, sans-serif; cursor: pointer; opacity: 0; transition: opacity 400ms; }
-.intro-screen button:disabled { visibility: hidden; }
-.intro-screen button.ready { opacity: 1; }
-.intro-screen button:hover { border-color: #222; }
-@media (max-width: 500px) { .playback-dock { padding-right: 12px; padding-left: 12px; } .dock-buttons { margin-top: 2px; } }
+@media (max-width: 500px) {
+  .playback-dock {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .dock-buttons {
+    margin-top: 2px;
+  }
+}
