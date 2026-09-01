@@ -6,9 +6,9 @@ Built with HTML, CSS, and JavaScript
 
 ## About
 
-Line Sledder is a fully client-side track editor and sledding simulation inspired by the core mechanics of Line Rider. Draw curves, build jumps, add speed and bounce lines, and watch your sledders ride what you create.
+Line Sledder is a fully client-side track editor and sledding simulation inspired by Line Rider. Draw curves, build jumps, add speed and bounce lines, and watch your sledders ride what you create.
 
-Everything runs in your browser with plain HTML, CSS, and JavaScript. No backend, no database, and no build step required.
+Everything runs in your browser with plain HTML, CSS, and JavaScript. 
 
 ## Features
 
